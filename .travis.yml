@@ -1,0 +1,11 @@
+language: node_js
+
+node_js:
+  - lts/*
+
+cache: yarn
+
+before_script:
+  - sed  "s/{HOOK_URL}/${HOOK_URL}/" _index.js > index.js
+
+script: node index.js
