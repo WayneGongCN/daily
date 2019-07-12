@@ -13,6 +13,7 @@ const parseDate = (date = new Date()) => {
   return `${year}-${month}-${day}`
 }
 
+
 const getData = (lang, count, since) => axios.get(dataUrl(lang, since))
   .then(res => {
     if (res.status !== 200) return Promise.reject(res)
@@ -29,16 +30,16 @@ const template = (lang, data) => {
 
   const titleTpl = lang => {
     const today = new Date()
-    return `## ${lang} daily ${parseDate()}\n\n`
+    return `## ${lang} daily ${parseDate()}\n\n---`
   }
   
-  const mdTpl = ({name, description, stars, url}) => `### [${name}](${url}) \n\n${description} \n\nstars: ${stars} \n\n`
+  const mdTpl = ({name, description, stars, url}) => `### [${name}](${url}) \n\n${description} \n\nstars: ${stars} \n\n---\n`
   
-  return `${titleTpl(lang)} \n${data.map(mdTpl).join('\n')}`
+  return `${titleTpl(lang)}\n\n${data.map(mdTpl).join('\n')}`
 }
 
 
-const sendMessage = content => {
+const sendMessage = (hookUrl, content) => {
   if (!content) return
 
   const params = {
@@ -55,10 +56,10 @@ const sendMessage = content => {
 
 let [lang, count, since] = process.argv.slice(2)
 lang = lang || 'javascript'
-count = count || 10
+count = count || 5
 since = since || 'daily'
 
 getData(lang, count, since)
   .then(data => template(lang, data))
-  .then(sendMessage)
+  .then(content => sendMessage(hookUrl, content))
   .then(console.log)

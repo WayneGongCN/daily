@@ -1,4 +1,24 @@
 {
+  "name": "daily",
+  "description": "[![Build Status](https://travis-ci.com/zowiegong/daily.svg?branch=master)](https://travis-ci.com/zowiegong/daily)",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zowiegong/daily.git"
+  },
+  "keywords": [
+    "bot"
+  ],
+  "author": "zowiegong",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zowiegong/daily/issues"
+  },
+  "homepage": "https://github.com/zowiegong/daily#readme",
   "dependencies": {
     "axios": "^0.19.0"
   }
