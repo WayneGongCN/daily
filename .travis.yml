@@ -7,7 +7,7 @@ cache: yarn
 
 before_script:
   - sed  "s!{HOOK_URL}!${HOOK_URL}!" index.js > _index.js
-  - mv _index.js > index.js
+  - mv _index.js index.js
 
 script: 
   - node index.js javascript
